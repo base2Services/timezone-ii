@@ -1,0 +1,11 @@
+DEPENDENCIES
+  minitest-handler
+  timezone-ii
+    path: .
+    metadata: true
+
+GRAPH
+  chef_handler (2.1.0)
+  minitest-handler (1.5.0)
+    chef_handler (>= 0.0.0)
+  timezone-ii (0.2.9992)

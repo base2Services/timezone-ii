@@ -15,9 +15,9 @@ package value_for_platform_family(
   'default' => 'tzdata'
 )
 
-case node.platform_family
+case node['platform_family']
 when 'debian', 'fedora'
-  include_recipe "timezone-ii::#{node.platform_family}"
+  include_recipe "timezone-ii::#{node['platform_family']}"
 
 else
   if node.os == "linux"
@@ -28,20 +28,20 @@ else
               "using generic Linux method"
     log message do
       level :warn
-      not_if { %w( centos gentoo rhel ).include? node.platform_family }
+      not_if { %w( centos gentoo rhel ).include? node['platform_family'] }
     end
 
     include_recipe 'timezone-ii::linux-generic'
 
   else
     message = "Don't know how to configure timezone for " +
-              "'#{node.platform_family}'!"
+              "'#{node['platform_family']}'!"
     log message do
       level :error
     end
 
   end  # if/else node.os
 
-end  # case node.platform_family
+end  # case node['platform_family']
 
 # vim:ts=2:sw=2:
